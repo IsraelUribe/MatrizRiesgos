@@ -21,7 +21,7 @@
             <div class="col-md-12 table-responsive">
                 <table class="table table-bordered table-hover table-sortable" >
                     <thead>
-                        <tr>
+                        <tr class="text-center">
                             <th>No. Riesgo</th>
                             <th>Descripción del Riesgo</th>
                             <th>Clasificación del Riesgo</th>
@@ -42,6 +42,18 @@
                             <th>Descripción</th>
                             <th>Unidad de Medida</th>
                             <th>Meta Absoluta (Anual)</th>
+                            <th>Enero</th>
+                            <th>Febrero</th>
+                            <th>Marzo</th>
+                            <th>Abril</th>
+                            <th>Mayo</th>
+                            <th>Junio</th>
+                            <th>Julio</th>
+                            <th>Agosto</th>
+                            <th>Septiembre</th>
+                            <th>Octubre</th>
+                            <th>Noviembre</th>
+                            <th>Diciembre</th>
                             <th>Meta Alcanzada</th>
                             <th>Porcentaje de cumplimiento</th>
                         </tr>

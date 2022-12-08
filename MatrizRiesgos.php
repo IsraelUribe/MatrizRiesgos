@@ -16,7 +16,6 @@
         function NuevaFila(){
             var tabla = document.getElementById("tabla-mr"); 
             var fila = document.getElementById("filaRegistro").cloneNode(true);
-            var tr = document.createElement("tr");
             tabla.appendChild(fila);
         }
     </script>
@@ -85,54 +84,54 @@
                     </thead>
                     <tbody>
                         <tr id="filaRegistro"  class="hidden">
-                            <td data-name="numero">
-                                <input type="text" name='NumRiesgo'  placeholder='No. riesgo' />
-                            </td>
-                            <td data-name="unidad">
-                                <textarea  placeholder='Unidad'></textarea>
-                            </td>
-                            <td data-name="alineacion">
-                                <input type="text" name="select" placeholder="Selección" class=""></input>
+                            <td>
+                                <input type="text" placeholder='No. riesgo' />
                             </td>
                             <td>
-                                <textarea  name="desc" placeholder="Descripción" class=""></textarea>
+                                <textarea  placeholder='Unidad'></textarea>
                             </td>
-                            <td data-name="riesgo">
-                                <input type="text" name='riesgo' placeholder='riesgo' class=""/>
+                            <td>
+                                <input type="text" placeholder="Selección" class=""></input>
                             </td>
-                            <td data-name="nivel">
-                                <input type="text" name='nivelriesgo' placeholder='nivel' class=""/>
+                            <td>
+                                <textarea placeholder="Descripción" class=""></textarea>
                             </td>
-                            <td data-name="ClasifiSelec">
-                                <input type="text" name='seleccionClas' placeholder='seleccion' class=""/>
+                            <td>
+                                <input type="text" placeholder='riesgo' class=""/>
                             </td>
-                            <td data-name="otro">
-                                <input type="text" name='otro' placeholder='otro' class=" "/>
+                            <td>
+                                <input type="text" placeholder='nivel' class=""/>
                             </td>
-                            <td data-name="nFactor" rowSpan="5">
-                                <input type="text" name='numFactor' placeholder='No.' />
-                                <p></p>
-                                <p></p>
-                                <input type="text" name='numFactor' placeholder='No.' />
-                                <p></p>
-                                <p></p>
-                                <input type="text" name='numFactor' placeholder='No.' />
-                                <p></p>
-                                <p></p>
-                                <input type="text" name='numFactor' placeholder='No.' />
-                                <p></p>
-                                <p></p>
-                                <input type="text" name='numFactor' placeholder='No.' />
+                            <td>
+                                <input type="text" placeholder='seleccion' class=""/>
                             </td>
-                            <td data-name="desFactor" rowSpan="5">
+                            <td>
+                                <input type="text" placeholder='otro' class=" "/>
+                            </td>
+                            <td>
+                                <input type="number" placeholder='No.' />
+                                <p></p>
+                                <p></p>
+                                <input type="number" placeholder='No.' />
+                                <p></p>
+                                <p></p>
+                                <input type="number" placeholder='No.' />
+                                <p></p>
+                                <p></p>
+                                <input type="number" placeholder='No.' />
+                                <p></p>
+                                <p></p>
+                                <input type="number" placeholder='No.' />
+                            </td>
+                            <td>
                                 <textarea name='' placeholder='Descripción'></textarea>
                                 <textarea name='' placeholder='Descripción'></textarea>
                                 <textarea name='' placeholder='Descripción'></textarea>
                                 <textarea name='' placeholder='Descripción'></textarea>
                                 <textarea name='' placeholder='Descripción'></textarea>
                             </td>
-                            <td data-name="clasiFactor" rowSpan="5">
-                                <select name="clasFactor" placeholder='Selecione'>
+                            <td>
+                                <select placeholder='Selecione'>
                                     <option value="">Seleccione</option>
                                     <option value="1">Humano</option>
                                     <option value="2">Financiero - presupuestal</option>
@@ -143,7 +142,7 @@
                                     <option value="7">Entorno</option>
                                 </select>
                                 <p></p>
-                                <select name="clasFactor" placeholder='Selecione'>
+                                <select placeholder='Selecione'>
                                     <option value="">Seleccione</option>
                                     <option value="1">Humano</option>
                                     <option value="2">Financiero - presupuestal</option>
@@ -154,7 +153,7 @@
                                     <option value="7">Entorno</option>
                                 </select>
                                 <p></p>
-                                <select name="clasFactor" placeholder='Selecione'>
+                                <select placeholder='Selecione'>
                                     <option value="">Seleccione</option>
                                     <option value="1">Humano</option>
                                     <option value="2">Financiero - presupuestal</option>
@@ -165,7 +164,7 @@
                                     <option value="7">Entorno</option>
                                 </select>
                                 <p></p>
-                                <select name="clasFactor" placeholder='Selecione'>
+                                <select placeholder='Selecione'>
                                     <option value="">Seleccione</option>
                                     <option value="1">Humano</option>
                                     <option value="2">Financiero - presupuestal</option>
@@ -176,7 +175,7 @@
                                     <option value="7">Entorno</option>
                                 </select>
                                 <p></p>
-                                <select name="clasFactor" placeholder='Selecione'>
+                                <select placeholder='Selecione'>
                                     <option value="">Seleccione</option>
                                     <option value="1">Humano</option>
                                     <option value="2">Financiero - presupuestal</option>
@@ -187,7 +186,7 @@
                                     <option value="7">Entorno</option>
                                 </select>
                             </td>
-                            <td data-name="tipoFactor" rowSpan="5">
+                            <td>
                                 <select name="tipoFactor0">
                                 <option value="">Seleccione</option>
                                 <option value="1">Interno</option>
@@ -239,23 +238,23 @@
                                 <option value="10">10</option>
                                 </select>
                             </td>
-                            <td data-name="cuadrente">
+                            <td>
                                 <input type="text" name='cuadrante0' placeholder='Cuadrante' class=" w-full"/>
                             </td>
-                            <td data-name="tieneContoles">
+                            <td>
                                 <select name="tieneControles0">
                                 <option value="">Seleccione</option>
                                 <option value="1">SI</option>
                                 <option value="2">NO</option>
                                 </select>
                             </td>
-                            <td data-name="numeroControl">
+                            <td>
                                 <input type="text" name='numControl' placeholder='No.' class=" w-full"/>
                             </td>
                             <td data-name="descripcionContol">
                                 <input type="text" name='desControl' placeholder='Descripción' class=" w-full"/>
                             </td>
-                            <td data-name="tipoControl">
+                            <td>
                                 <select name="tipoControl0">
                                 <option value="">Seleccione</option>
                                 <option value="1">Preventivo</option>
@@ -263,7 +262,7 @@
                                 <option value="3">Correctivo</option>
                                 </select>
                             </td>
-                            <td data-name="documentado">
+                            <td>
                                 <select name="documentado0">
                                 <option value="">Seleccione</option>
                                 <option value="1">SI</option>
