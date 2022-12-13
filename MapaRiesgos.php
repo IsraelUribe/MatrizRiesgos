@@ -57,6 +57,7 @@
                 </table>
             </div>
         </div>
+        <button type="button" class="btn btn-primary bg-blue-600 float-rigth">Cargar Datos</button>
     </div>
 </body>
 </html>

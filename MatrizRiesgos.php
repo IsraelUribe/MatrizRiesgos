@@ -338,11 +338,11 @@
                             </td>
                             <td data-name="estrategiaUsar">
                                 <select name="estrategia" placeholder='Selecione' class=''>
-                                <option value="">Seleccione</option>
-                                <option value="1">Evitar el Riesgo</option>
-                                <option value="2">Reducir el Riesgo</option>
-                                <option value="3">Asumir el Resigo</option>
-                                <option value="4">Compartir el Riesgo</option>
+                                    <option value="">Seleccione</option>
+                                    <option value="1">Evitar el Riesgo</option>
+                                    <option value="2">Reducir el Riesgo</option>
+                                    <option value="3">Asumir el Resigo</option>
+                                    <option value="4">Compartir el Riesgo</option>
                                 </select>
                             </td>
                             <td data-name="descripcionAccion">
@@ -356,7 +356,8 @@
                 </table>
             </div>
         </div>
-        <a id="add_row" class="btn btn-primary float-right" onclick="NuevaFila()">Add Row</a>
+        <a id="add_row" class="btn btn-primary bg-blue-600 float-right" onclick="NuevaFila()">Add Row</a>
+        <button type="button" class="btn btn-primary bg-blue-600 float-left">Guardar</button>
     </div>
 </body>
 </html>

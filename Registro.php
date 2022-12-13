@@ -5,17 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/png" href="public/favicon.ico"/>
-    <title>Registro</title>
+    <title>Registro de Usuarios</title>
     <link rel="stylesheet" href="styles/registro.css"/>
     
     <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/> -->
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
-	<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"/>
+    <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'/>
+	<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'/>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"/>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -77,11 +77,11 @@
 							</div>
 						</div>
 					</div>
-					<div class="form-group ">
-						<button type="button" class="btn btn-primary bg-blue-600 ">Registrar</button>
+					<div class="pb-6 pt-6 text-center">
+						<button type="button" class="btn btn-primary bg-blue-600 rounded-t-2xl">Registrar</button>
 					</div>
-					<div class="login-register">
-			            <a href="MatrizRiesgos.php"><button type="button"class="btn btn-primary bg-blue-600 float-left ml-12">Iniciar sesión</button></a>
+					<div class="text-center">
+			            <a href="MatrizRiesgos.php"><button type="button" class="btn btn-primary bg-blue-600 rounded-b-2xl">Iniciar sesión</button></a>
 		            </div>
 				</form>
 			</div>
