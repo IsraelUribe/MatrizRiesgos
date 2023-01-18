@@ -38,7 +38,7 @@
                             <th>3er. Trimestre</th>
                             <th>4to. Trimestre</th>
                             <th>Avance Acumulado</th>
-                            <th> Actividades realizadas</th>
+                            <th>Actividades realizadas</th>
                             <th>Descripción</th>
                             <th>Unidad de Medida</th>
                             <th>Meta Absoluta (Anual)</th>

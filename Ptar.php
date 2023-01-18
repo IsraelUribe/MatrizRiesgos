@@ -17,7 +17,7 @@
 <body>
     <?php include("NavBar.php"); ?>
     <div class="container" >
-        <h1 class="mt-6 mb-4 text-3xl xl:text-4xl font-bold text-gray-800 text-center text-center">Programa de Trabajo Anual Realizado</h1>
+        <h1 class="mt-6 mb-4 text-3xl xl:text-4xl font-bold text-gray-800  text-center">Programa de Trabajo Anual Realizado</h1>
         <div class="row clearfix">
             <div class="col-md-12 table-responsive">
                 <table class="table table-bordered table-hover table-sortable" >
@@ -43,19 +43,19 @@
                     <tbody>
                         <tr>
                             <td>
-                                <Input type="text" placeholder="No.Riesgo"></Input>
+                                <input type="text" placeholder=""></input>
                             </td>
                             <td>
-                                <Input type="text" placeholder="De"></Input>
+                                <Input type="text" placeholder=""></Input>
                             </td>
                             <td>
-                                <Input type="text" placeholder="No.Riesgo"></Input>
+                                <Input type="text" placeholder=""></Input>
                             </td>
                             <td>
-                                <Input type="text" placeholder="No.Riesgo"></Input>
+                                <Input type="text" placeholder=""></Input>
                             </td>
                             <td>
-                                <Input type="text" placeholder="No.Riesgo"></Input>
+                                <Input type="text" placeholder=""></Input>
                             </td>
                         </tr>
                     </tbody>

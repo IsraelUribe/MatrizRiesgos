@@ -17,7 +17,35 @@
 </head>
 
 <body>
-    
+    <?php /* //etiqueta de apertura de un fragmento de código php, la de cierr es así: ?> */
+        require_once("DataBaseConnect.php");//Comando para incluir un archivo php, es identica a requiere, solo que con esta si ya se ha incluido antes el archivo no se volverá a incluir.
+        //el requiere contiene las credenciales de conexión a la base de datos.
+        session_start();//Iniciar una nueva sesión o reanudar la anterior
+        if (isset($_POST['inicio'])) {//Verifica si una variable ha sido declarada o no, en este caso toma el nombre del boton de login
+            $username = mysqli_real_escape_string($conn, $_POST['correo']);//variable que toma lo que hay en la caja de texto de correo y lo convierte todo a string
+            $password = mysqli_real_escape_string($conn, $_POST['pass']);//variable que toma lo que hay en la caja de texto de password y lo convierte todo a string
+            $query = "SELECT * FROM usuarios WHERE email_user = '$username' and password_user = '$password'";//Consulta a la tabla usuarios para encontrar coindidencias con los valores que ahora tienen las variables.
+            $result = mysqli_query($conn, $query);//Este comando sirve para ejecutar realmente la consulta en la base de datos, $conn es el nombre de la conexión a la base de datos y $query es la consulta o sentecia sql que se desea ejecutar.
+            /* $nombre = "SELECT nombre from usuarios where email_user = '$username'";
+            $resultado = mysqli_query($conn, $nombre); */
+                        
+        
+            if (mysqli_num_rows($result)) {//Este retorna el numero de filas consultadas y cuando la fila coincide con result que contiene el resultado de la consulta se obtiene lo siguiente.
+                $_SESSION['userName'] = $username;//El nombre de la sesión activa será igual a lo que haya en la variable usarname.
+                header("Location: Informacion.php"); // Redirigir al usuario al archivo Informacion.php 
+            } else {//En caso de ser falso(que el usuario y/o contraseña sean incorrectas) se mostrará esto.
+                 echo '<script>
+                Swal.fire({
+                    icon: "error",
+                    title: "¡ERROR!",
+                    text: "Alguno de los datos ingresados, es incorrecto. Intenta de nuevo.",
+                    showConfirmButton: true,
+                    confirmButtonText: "ACEPTAR"
+                });
+            </script>';
+            }
+        }else{//si la variable inicio no esta declarada mostrará esto
+    ?>
     <div id="login">
         <div class="sidenav">
             <div class="login-main-text">
@@ -55,21 +83,35 @@
                     </button>
                 </div>
                 <div class="login-form -ml-15 -mb-40 mt-40">
-                    <form >
+                    <form method="post">
                         <div class="form-group">
                             <label >Correo</label>
-                            <input type="email"   placeholder="abcdefghij@iteshu.edu.mx" class="form-control" required/>
+                            <input type="email"  name="correo" id="correo" placeholder="abcdefghij@iteshu.edu.mx" class="form-control" required/>
                         </div>
                         <div class="form-group">
                             <label >Cotraseña</label>
-                            <input type="password"  placeholder="Password" class="form-control" required/>
+                            <input type="password"  name="pass" id="contrasenia" placeholder="Password" class="form-control" required/>
                         </div>
-                        <a href="Informacion.php"><button  type="button" class="btn btn-primary bg-blue-600 rounded-2xl">Login</button></a>
+                        <input  type="submit" class="btn btn-primary bg-blue-600 rounded-2xl" value="login" name="inicio"></input>
                         <a href="Registro.php"><button  type="button" class="btn btn-primary bg-blue-600 rounded-2xl">Register</button></a>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+    <?php } ?>
+    <?php
+        if(isset($_GET['inicio'])=='false') {                    
+            echo '<script>
+                Swal.fire({
+                    icon: "error",
+                    title: "¡ERROR!",
+                    text: "Alguno de los datos ingresados, es incorrecto. Intenta de nuevo.",
+                    showConfirmButton: true,
+                    confirmButtonText: "ACEPTAR"
+                });
+            </script>';
+        }
+    ?> 
 </body>
 </html>

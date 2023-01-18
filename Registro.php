@@ -19,6 +19,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </head>
 <body>
+	
     <div class="container">
 		<div class="row main">
 		    <div class="panel-heading">
@@ -28,13 +29,13 @@
 	            </div>
 	        </div> 
 			<div class="main-login main-center">
-			    <form class="form-horizontal" method="post" action="#">		
+			    <form class="form-horizontal" method="post" action="AddUser.php">		
 					<div class="form-group">
-						<label for="name" class="cols-sm-2 control-label">Nombre</label>
+						<label for="nameUser" class="cols-sm-2 control-label">Nombre</label>
 						<div class="cols-sm-10">
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-								<input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name"/>
+								<input type="text" class="form-control" name="nameUser" id="nameUser"  placeholder="Enter your Name"/>
 							</div>
 						</div>
 					</div>
@@ -49,7 +50,7 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					<!-- <div class="form-group">
 						<label for="username" class="cols-sm-2 control-label">Nombre de usuario</label>
 						<div class="cols-sm-10">
 							<div class="input-group">
@@ -57,7 +58,7 @@
 								<input type="text" class="form-control" name="username" id="username"  placeholder="Enter your Username"/>
 							</div>
 						</div>
-					</div>
+					</div> -->
 
 					<div class="form-group">
 						<label for="password" class="cols-sm-2 control-label">Password</label>
@@ -78,7 +79,7 @@
 						</div>
 					</div>
 					<div class="pb-6 pt-6 text-center">
-						<button type="button" class="btn btn-primary bg-blue-600 rounded-t-2xl">Registrar</button>
+						<button type="submit" class="btn btn-primary bg-blue-600 rounded-t-2xl" name="registrar">Registrar</button>
 					</div>
 					<div class="text-center">
 			            <a href="MatrizRiesgos.php"><button type="button" class="btn btn-primary bg-blue-600 rounded-b-2xl">Iniciar sesión</button></a>
@@ -87,5 +88,6 @@
 			</div>
 	    </div>
 	</div>
+	
 </body>
 </html>
