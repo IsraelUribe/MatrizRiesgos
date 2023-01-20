@@ -33,7 +33,7 @@
             <h1 class="mt-6 mb-4 text-3xl xl:text-4xl font-bold text-gray-800 text-center">Matríz de Administración de Riesgos</h1>
             <div class="row clearfix">
         	    <div class="col-md-12 table-responsive">
-    			    <table class="table table-bordered table-hover table-sortable" id="tabla-mr">
+    			    <table align="center" class="table table-bordered table-hover table-sortable" id="tabla-mr">
                         <thead>
                         <tr class="text-center">
                             <th colSpan="16">l. Evaluación de riesgos</th>
@@ -89,7 +89,7 @@
                             <th>IV</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody >
                             <?php
                                 require_once("DataBaseConnect.php");
                                 if (isset($_POST['guardar'])) {
@@ -105,13 +105,42 @@
                                     /* 
                                     
                                     } */
-                                    $factor1 = $_POST["numFactor"];
-                                    $factor2 = $_POST["numFactor2"];
+                                    
+                                    /* $factor1 = $_POST["numFactor"];
+                                    $descripcionF1 = $_POST["descripcionF1"];
+                                    $clasFa1 = $_POST["clasificacionFactor"];
+                                    $tipoFac = $_POST["tipoFactor0"];*/
+                                    $efecto = $_POST["efectoRiesgo"]; 
+                                    $gradoImpacto = $_POST["gradoImpacto0"];
+                                    $ocurrenciaInicial = $_POST["ocurrenciaInicial"];
+                                    $cuadrante = $_POST["cuadrante0"];
+                                    $opControl = $_POST["tieneControles0"];
+                                    /*$numControl = mysqli_escape_string($conn,$_POST["numControl0"]);
+                                    $desControl = mysqli_escape_string($conn,$_POST["desControl"]);
+                                    $tipoControl = mysqli_escape_string($conn, $_POST["tipoControl0"]);
+                                    $documentado = mysqli_escape_string($conn,$_POST["documentado"]);
+                                    $formalizado = mysqli_escape_string($conn,$_POST["formalizado"]);
+                                    $seAplica = mysqli_escape_string($conn,$_POST["seAplica"]);
+                                    $esEfectivo = mysqli_escape_string($conn,$_POST["esEfectivo"]);
+                                    $resultado = mysqli_escape_string($conn,$_POST["resultado0"]); */
+                                    $controlado = $_POST["Controlado"];
+                                    $impactoValoracion = $_POST["gradoImpactoValoracion0"];
+                                    $probOcurrencia = $_POST["probOcurrencia"];
+                                    $p1 = $_POST["p1"];
+                                    $p2 = $_POST["p2"];
+                                    $p3 = $_POST["p3"];
+                                    $p4 = $_POST["p4"];
+                                    $estrategia = $_POST["estrategia"];
+                                    $desAcciones = $_POST["desAccion"];
+                                    
+                                    $user = $_SESSION["userName"];
+                                    
+                                    /* $factor2 = $_POST["numFactor2"];
                                     $factor3 = $_POST["numFactor3"];
                                     $factor4 = $_POST["numFactor4"];
                                     $factor5 = $_POST["numFactor5"];
                                     
-                                    $descripcionF1 = $_POST["descripcionF1"];
+                                    
                                     $descripcionF2 = $_POST["descripcionF2"];
                                     $descripcionF3 = $_POST["descripcionF3"];
                                     $descripcionF4 = $_POST["descripcionF4"];
@@ -127,26 +156,28 @@
                                     $tipoFac2 = $_POST["tipoFactor1"];
                                     $tipoFac3 = $_POST["tipoFactor2"];
                                     $tipoFac4 = $_POST["tipoFactor3"];
-                                    $tipoFac5 = $_POST["tipoFactor4"];
+                                    $tipoFac5 = $_POST["tipoFactor4"]; */
                                     
                                     
-                                    $insertarRiesgo = "INSERT INTO riesgos VALUES ('$noRiesgo','$unidad','$alineacion','$descripAlineacion','$riesgo','$nivel','$seleccion','$otro')";
-                                    if(mysqli_query($conn, $insertarRiesgo)){
-                                        header("Location: MapaRiesgos.php");
+                                    $insertar = "INSERT INTO riesgos VALUES ('$noRiesgo','$unidad','$alineacion','$descripAlineacion','$riesgo','$nivel','$seleccion','$otro',$efecto','$gradoImpacto','$ocurrenciaInicial','$cuadrante','$opControl','$controlado','$impactoValoracion','$probOcurrencia','$p1','$estrategia','$desAcciones', '2022','$user')";
+                                    //$insertar = "INSERT INTO factores VALUES ('$factor1','$descripcionF1','$clasFa1','$tipoFac','$noRiesgo')";
+                                    //$insertar = "INSERT INTO controles VALUES ('$numControl','$desControl',$tipoControl','$documentado','$formalizado','$seAplica','$esEfectivo','$resultado','$factor1')";
+                                    if(mysqli_multi_query($conn,$insertar)){
+                                        header("Location: MatizRiesgos.php");
                                     }else{
                                         echo "<div class='form'><h3>incorrect.</h3><br/>Haga clic aquí para <a href='MatrizRiesgos.php'>volver</a></div>";
                                     }
                                     
                                 }
                             ?>
-                            <tr id="filaRegistro"  class="hidden" rowSpan="5">
-                                <td >
+                            <tr id="filaRegistro"  class="hidden align-middle" rowSpan="5">
+                                <td rowSpan="5">
                                     <input type="text" placeholder='No. riesgo' value="" name="numRiesgo"/>
                                 </td>
-                                <td >
+                                <td rowSpan="5">
                                     <textarea  placeholder='Unidad' name="unidad"></textarea>
                                 </td>
-                                <td >
+                                <td rowSpan="5">
                                     <select placeholder="seleccione" name="alineacion">
                                         <option value="1">Estrategia</option>
                                         <option value="2">Objetivo</option>
@@ -155,20 +186,20 @@
                                     </select>
     
                                 </td>
-                                <td>
+                                <td rowSpan="5">
                                     <textarea placeholder="Descripción" name="desAlineacion"class=""></textarea>
                                 </td>
-                                <td >
+                                <td rowSpan="5">
                                     <input type="text" placeholder='riesgo' name="riesgo"/>
                                 </td>
-                                <td >
+                                <td rowSpan="5">
                                     <select placeholder='nivel' name="nivel">
                                         <option value="1">Estratégico</option>
                                         <option value="2">Directivo</option>
                                         <option value="3">Operativo</option>
                                     </select>
                                 </td >
-                                <td >
+                                <td rowSpan="5">
                                     <select placeholder='seleccion' name="seleccion">
                                         <option value="1">Sustantivo</option>
                                         <option value="2">Administrativo</option>
@@ -186,24 +217,16 @@
                                         <option value="14">Otros</option>
                                     </select>
                                 </td>
-                                <td >
+                                <td rowSpan="5">
                                     <input type="text" placeholder='otro' name="otro"/>
                                 </td>
-                                <td>
+                                <td rowSpan="1">
                                     <input class="row" type="number" placeholder='No.' name="numFactor"/><p/><p/>
-                                    <input class="row" type="number" placeholder='No.' name="numFactor2" /><p/><p/>
-                                    <input class="row" type="number" placeholder='No.' name="numFactor3"/><p/><p/>
-                                    <input class="row" type="number" placeholder='No.' name="numFactor4"/><p/><p/>
-                                    <input class="row" type="number" placeholder='No.' name="numFactor5"/>
                                 </td>
-                                <td>
+                                <td rowSpan="1">
                                     <textarea aria-rowspan="1" name='descripcionF1' placeholder='Descripción'></textarea>
-                                    <textarea aria-rowspan="1" name='descripcionF2' placeholder='Descripción'></textarea>
-                                    <textarea aria-rowspan="1" name='descripcionF3' placeholder='Descripción'></textarea>
-                                    <textarea aria-rowspan="1" name='descripcionF4' placeholder='Descripción'></textarea>
-                                    <textarea aria-rowspan="1" name='descripcionF5' placeholder='Descripción'></textarea>
                                 </td>
-                                <td >
+                                <td rowSpan="1">
                                     <select placeholder='Selecione' name="clasificacionFactor">
                                         <option value="0">Seleccione</option>
                                         <option value="1">Humano</option>
@@ -214,89 +237,18 @@
                                         <option value="6">Normativo</option>
                                         <option value="7">Entorno</option>
                                     </select>
-                                    <p></p>
-                                    <select placeholder='Selecione' name="clasificacionFactor2">
-                                        <option value="0">Seleccione</option>
-                                        <option value="1">Humano</option>
-                                        <option value="2">Financiero - presupuestal</option>
-                                        <option value="3">Técnico - Administrativo</option>
-                                        <option value="4">TIC's</option>
-                                        <option value="5">Material</option>
-                                        <option value="6">Normativo</option>
-                                        <option value="7">Entorno</option>
-                                    </select>
-                                    <p></p>
-                                    <select placeholder='Selecione' name="clasificacionFactor3">
-                                        <option value="0">Seleccione</option>
-                                        <option value="1">Humano</option>
-                                        <option value="2">Financiero - presupuestal</option>
-                                        <option value="3">Técnico - Administrativo</option>
-                                        <option value="4">TIC's</option>
-                                        <option value="5">Material</option>
-                                        <option value="6">Normativo</option>
-                                        <option value="7">Entorno</option>
-                                    </select>
-                                    <p></p>
-                                    <select placeholder='Selecione' name="clasificacionFactor4">
-                                        <option value="0">Seleccione</option>
-                                        <option value="1">Humano</option>
-                                        <option value="2">Financiero - presupuestal</option>
-                                        <option value="3">Técnico - Administrativo</option>
-                                        <option value="4">TIC's</option>
-                                        <option value="5">Material</option>
-                                        <option value="6">Normativo</option>
-                                        <option value="7">Entorno</option>
-                                    </select>
-                                    <p></p>
-                                    <select placeholder='Selecione' name="clasificacionFactor5">
-                                        <option value="">Seleccione</option>
-                                        <option value="1">Humano</option>
-                                        <option value="2">Financiero - presupuestal</option>
-                                        <option value="3">Técnico - Administrativo</option>
-                                        <option value="4">TIC's</option>
-                                        <option value="5">Material</option>
-                                        <option value="6">Normativo</option>
-                                        <option value="7">Entorno</option>
-                                    </select>
                                 </td>
-                                <td>
+                                <td rowSpan="1">
                                     <select name="tipoFactor0">
                                     <option value="">Seleccione</option>
                                     <option value="1">Interno</option>
                                     <option value="2">Externo</option>
                                     </select>
-                                    <p></p>
-                                    <select name="tipoFactor1">
-                                    <option value="">Seleccione</option>
-                                    <option value="1">Interno</option>
-                                    <option value="2">Externo</option>
-                                    </select>
-                                    <p></p>
-                                    <select name="tipoFactor2">
-                                    <option value="">Seleccione</option>
-                                    <option value="1">Interno</option>
-                                    <option value="2">Externo</option>
-                                    </select>
-                                    <p></p>
-                                    <select name="tipoFactor3">
-                                    <option value="">Seleccione</option>
-                                    <option value="1">Interno</option>
-                                    <option value="2">Externo</option>
-                                    </select>
-                                    <p></p>
-                                    <select name="tipoFactor4">
-                                    <option value="">Seleccione</option>
-                                    <option value="1">Interno</option>
-                                    <option value="2">Externo</option>
-                                    </select>
                                 </td>
-                                <td data-name="efecto">
-                                    <textarea  name='efectoRiesgo' placeholder='Efecto' class=" w-full"></textarea>
+                                <td rowSpan="5" data-name="efecto">
+                                    <textarea  name='efectoRiesgo' placeholder='Efecto' class="w-full"></textarea>
                                 </td>
-                                <td data-name="desFactor">
-                                    <textarea  name='descFactor' placeholder='Descripción' class=" w-full"></textarea>
-                                </td>
-                                <td data-name="gradoImpacto">
+                                <td rowSpan="5"  >
                                     <select name="gradoImpacto0" placeholder='Selecione'>
                                     <option value="">Seleccione</option>
                                     <option value="1">1</option>
@@ -311,64 +263,8 @@
                                     <option value="10">10</option>
                                     </select>
                                 </td>
-                                <td>
-                                    <input type="text" name='cuadrante0' placeholder='Cuadrante' class=" w-full"/>
-                                </td>
-                                <td>
-                                    <select name="tieneControles0">
-                                    <option value="">Seleccione</option>
-                                    <option value="1">SI</option>
-                                    <option value="2">NO</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <input type="text" name='numControl' placeholder='No.' class=" w-full"/>
-                                </td>
-                                <td data-name="descripcionContol">
-                                    <input type="text" name='desControl' placeholder='Descripción' class=" w-full"/>
-                                </td>
-                                <td>
-                                    <select name="tipoControl0">
-                                    <option value="">Seleccione</option>
-                                    <option value="1">Preventivo</option>
-                                    <option value="2">Detectivo</option>
-                                    <option value="3">Correctivo</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select name="documentado0">
-                                    <option value="">Seleccione</option>
-                                    <option value="1">SI</option>
-                                    <option value="2">NO</option>
-                                    </select>
-                                </td>
-                                <td data-name="formalizado">
-                                    <select name="formalizado0">
-                                    <option value="">Seleccione</option>
-                                    <option value="1">SI</option>
-                                    <option value="2">NO</option>
-                                    </select>
-                                </td>
-                                <td data-name="seAplica">
-                                    <select name="seAplica0">
-                                    <option value="">Seleccione</option>
-                                    <option value="1">SI</option>
-                                    <option value="2">NO</option>
-                                    </select>
-                                </td>
-                                <td data-name="esEfectivo">
-                                    <select name="esEfectivo0">
-                                    <option value="">Seleccione</option>
-                                    <option value="1">SI</option>
-                                    <option value="2">NO</option>
-                                    </select>
-                                </td>
-                                <td data-name="resultado">
-                                    <input type="text" name='resultado0' placeholder='Determinación' />
-                                </td>
-                                <td>pendiente</td>
-                                <td data-name="gradoImpactoValoracion">
-                                    <select name="gradoImpactoCaloracion0" placeholder='Selecione' class=''>
+                                <td rowSpan="5"  data-name="probOcurrenciaInicial">
+                                    <select name="ocurrenciaInicial" placeholder='Selecione'>
                                     <option value="">Seleccione</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -382,7 +278,78 @@
                                     <option value="10">10</option>
                                     </select>
                                 </td>
-                                <td data-name="probabilidadOcurrencia">
+                                <td rowSpan="5">
+                                    <input type="text" name='cuadrante0' placeholder='Cuadrante' class=" w-full"/>
+                                </td>
+                                <td rowSpan="5">
+                                    <select name="tieneControles0">
+                                    <option value="">Seleccione</option>
+                                    <option value="1">SI</option>
+                                    <option value="2">NO</option>
+                                    </select>
+                                </td>
+                                <td rowSpan="1">
+                                    <input type="text" name='numControl' placeholder='No.' class=" w-full"/>
+                                </td>
+                                <td rowSpan="1" data-name="descripcionContol">
+                                    <input type="text" name='desControl' placeholder='Descripción' class=" w-full"/>
+                                </td>
+                                <td rowSpan="1">
+                                    <select name="tipoControl0">
+                                    <option value="">Seleccione</option>
+                                    <option value="1">Preventivo</option>
+                                    <option value="2">Detectivo</option>
+                                    <option value="3">Correctivo</option>
+                                    </select>
+                                </td>
+                                <td rowSpan="1">
+                                    <select name="documentado0">
+                                    <option value="">Seleccione</option>
+                                    <option value="1">SI</option>
+                                    <option value="2">NO</option>
+                                    </select>
+                                </td>
+                                <td rowSpan="1" data-name="formalizado">
+                                    <select name="formalizado0">
+                                    <option value="">Seleccione</option>
+                                    <option value="1">SI</option>
+                                    <option value="2">NO</option>
+                                    </select>
+                                </td>
+                                <td rowSpan="1" data-name="seAplica">
+                                    <select name="seAplica0">
+                                    <option value="">Seleccione</option>
+                                    <option value="1">SI</option>
+                                    <option value="2">NO</option>
+                                    </select>
+                                </td>
+                                <td rowSpan="1" data-name="esEfectivo">
+                                    <select name="esEfectivo0">
+                                    <option value="">Seleccione</option>
+                                    <option value="1">SI</option>
+                                    <option value="2">NO</option>
+                                    </select>
+                                </td>
+                                <td rowSpan="1" data-name="resultado">
+                                    <input type="text" name='resultado0' placeholder='Determinación' />
+                                </td>
+                                <td rowSpan="1"><input type="text" name="Controlado" placeholder="pendiente">  </input></td>
+                                <td rowSpan="5" data-name="gradoImpactoValoracion">
+                                    <select name="gradoImpactoValoracion0" placeholder='Selecione' class=''>
+                                    <option value="">Seleccione</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    </select>
+                                </td>
+                                <td rowSpan="5" data-name="probabilidadOcurrencia">
                                     <select name="probOcurrencia" placeholder='Selecione' class=''>
                                     <option value="">Seleccione</option>
                                     <option value="1">1</option>
@@ -397,19 +364,19 @@
                                     <option value="10">10</option>
                                     </select>
                                 </td>
-                                <td>
-                                    pendiente
+                                <td rowSpan="5">
+                                    <input type="text" name="p1" placeholder="pendiente">  </input>
                                 </td>
-                                <td>
-                                    pendiente
+                                <td rowSpan="5">
+                                    <input type="text" name="p2" placeholder="pendiente">  </input>
                                 </td>
-                                <td>
-                                    pendiente
+                                <td rowSpan="5">
+                                    <input type="text" name="p3" placeholder="pendiente">  </input>
                                 </td>
-                                <td>
-                                    pendiente
+                                <td rowSpan="5">
+                                    <input type="text" name="p4" placeholder="pendiente">  </input>
                                 </td>
-                                <td data-name="estrategiaUsar">
+                                <td rowSpan="5" data-name="estrategiaUsar">
                                     <select name="estrategia" placeholder='Selecione' class=''>
                                         <option value="">Seleccione</option>
                                         <option value="1">Evitar el Riesgo</option>
@@ -418,18 +385,323 @@
                                         <option value="4">Compartir el Riesgo</option>
                                     </select>
                                 </td>
-                                <td data-name="descripcionAccion">
+                                <td rowSpan="5" data-name="descripcionAccion">
                                     <textarea name='desAccion' placeholder='Descripción' class=''></textarea>
                                 </td>
-                                <td data-name="del">
+                                <td rowSpan="5" data-name="del">
                                     <button name="del0" class='btn btn-danger glyphicon glyphicon-remove row-remove' onclick="EliminarFila()"><span aria-hidden="true">×</span></button>
                                 </td>
                             </tr>
+                            
+                            
+                            <!-- Filas Factores -->
+                            <tr>
+                                <td rowSpan="1">
+                                    <input class="row" type="number" placeholder='No.' name="numFactor2"/><p/><p/>
+                                </td>
+                                <td rowSpan="1">
+                                    <textarea aria-rowspan="1" name='descripcionF2' placeholder='Descripción'></textarea>
+                                </td>
+                                <td rowSpan="1">
+                                    <select placeholder='Selecione' name="clasificacionFactor2">
+                                        <option value="0">Seleccione</option>
+                                        <option value="1">Humano</option>
+                                        <option value="2">Financiero - Presupuestal</option>
+                                        <option value="3">Técnico - Administrativo</option>
+                                        <option value="4">TIC's</option>
+                                        <option value="5">Material</option>
+                                        <option value="6">Normativo</option>
+                                        <option value="7">Entorno</option>
+                                    </select>
+                                </td>
+                                <td rowSpan="1">
+                                    <select name="tipoFactor01">
+                                    <option value="">Seleccione</option>
+                                    <option value="1">Interno</option>
+                                    <option value="2">Externo</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td rowSpan="1">
+                                    <input class="row" type="number" placeholder='No.' name="numFactor3"/><p/><p/>
+                                </td>
+                                <td rowSpan="1">
+                                    <textarea aria-rowspan="1" name='descripcionF3' placeholder='Descripción'></textarea>
+                                </td>
+                                <td rowSpan="1">
+                                    <select placeholder='Selecione' name="clasificacionFactor3">
+                                        <option value="0">Seleccione</option>
+                                        <option value="1">Humano</option>
+                                        <option value="2">Financiero - Presupuestal</option>
+                                        <option value="3">Técnico - Administrativo</option>
+                                        <option value="4">TIC's</option>
+                                        <option value="5">Material</option>
+                                        <option value="6">Normativo</option>
+                                        <option value="7">Entorno</option>
+                                    </select>
+                                </td>
+                                <td rowSpan="1">
+                                    <select name="tipoFactor2">
+                                    <option value="">Seleccione</option>
+                                    <option value="1">Interno</option>
+                                    <option value="2">Externo</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td rowSpan="1">
+                                    <input class="row" type="number" placeholder='No.' name="numFactor4"/><p/><p/>
+                                </td>
+                                <td rowSpan="1">
+                                    <textarea aria-rowspan="1" name='descripcionF4' placeholder='Descripción'></textarea>
+                                </td>
+                                <td rowSpan="1">
+                                    <select placeholder='Selecione' name="clasificacionFactor4">
+                                        <option value="0">Seleccione</option>
+                                        <option value="1">Humano</option>
+                                        <option value="2">Financiero - Presupuestal</option>
+                                        <option value="3">Técnico - Administrativo</option>
+                                        <option value="4">TIC's</option>
+                                        <option value="5">Material</option>
+                                        <option value="6">Normativo</option>
+                                        <option value="7">Entorno</option>
+                                    </select>
+                                </td>
+                                <td rowSpan="1">
+                                    <select name="tipoFactor3">
+                                    <option value="">Seleccione</option>
+                                    <option value="1">Interno</option>
+                                    <option value="2">Externo</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td rowSpan="1">
+                                    <input class="row" type="number" placeholder='No.' name="numFactor5"/><p/><p/>
+                                </td>
+                                <td rowSpan="1">
+                                    <textarea aria-rowspan="1" name='descripcionF5' placeholder='Descripción'></textarea>
+                                </td>
+                                <td rowSpan="1">
+                                    <select placeholder='Selecione' name="clasificacionFactor5">
+                                        <option value="0">Seleccione</option>
+                                        <option value="1">Humano</option>
+                                        <option value="2">Financiero - Presupuestal</option>
+                                        <option value="3">Técnico - Administrativo</option>
+                                        <option value="4">TIC's</option>
+                                        <option value="5">Material</option>
+                                        <option value="6">Normativo</option>
+                                        <option value="7">Entorno</option>
+                                    </select>
+                                </td>
+                                <td rowSpan="1">
+                                    <select name="tipoFactor4">
+                                    <option value="">Seleccione</option>
+                                    <option value="1">Interno</option>
+                                    <option value="2">Externo</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            
+                            <!-- Filas controles -->
+                            <!-- <tr rowSpan="1">
+                                <td rowSpan="1">
+                                    <input type="text" name='numControl' placeholder='No.' class=" w-full"/>
+                                </td>
+                                <td rowSpan="1" data-name="descripcionContol">
+                                    <input type="text" name='desControl' placeholder='Descripción' class=" w-full"/>
+                                </td>
+                                <td rowSpan="1">
+                                    <select name="tipoControl0">
+                                    <option value="">Seleccione</option>
+                                    <option value="1">Preventivo</option>
+                                    <option value="2">Detectivo</option>
+                                    <option value="3">Correctivo</option>
+                                    </select>
+                                </td>
+                                <td rowSpan="1">
+                                    <select name="documentado0">
+                                    <option value="">Seleccione</option>
+                                    <option value="1">SI</option>
+                                    <option value="2">NO</option>
+                                    </select>
+                                </td>
+                                <td rowSpan="1" data-name="formalizado">
+                                    <select name="formalizado0">
+                                    <option value="">Seleccione</option>
+                                    <option value="1">SI</option>
+                                    <option value="2">NO</option>
+                                    </select>
+                                </td>
+                                <td rowSpan="1" data-name="seAplica">
+                                    <select name="seAplica0">
+                                    <option value="">Seleccione</option>
+                                    <option value="1">SI</option>
+                                    <option value="2">NO</option>
+                                    </select>
+                                </td>
+                                <td rowSpan="1" data-name="esEfectivo">
+                                    <select name="esEfectivo0">
+                                    <option value="">Seleccione</option>
+                                    <option value="1">SI</option>
+                                    <option value="2">NO</option>
+                                    </select>
+                                </td>
+                                <td rowSpan="1" data-name="resultado">
+                                    <input type="text" name='resultado0' placeholder='Determinación' />
+                                </td>
+                                <td rowSpan="1">pendiente</td>
+                            </tr>
+                            <tr rosSpan="1">
+                                <td rowSpan="1">
+                                    <input type="text" name='numControl' placeholder='No.' class=" w-full"/>
+                                </td>
+                                <td rowSpan="1" data-name="descripcionContol">
+                                    <input type="text" name='desControl' placeholder='Descripción' class=" w-full"/>
+                                </td>
+                                <td rowSpan="1">
+                                    <select name="tipoControl0">
+                                    <option value="">Seleccione</option>
+                                    <option value="1">Preventivo</option>
+                                    <option value="2">Detectivo</option>
+                                    <option value="3">Correctivo</option>
+                                    </select>
+                                </td>
+                                <td rowSpan="1">
+                                    <select name="documentado0">
+                                    <option value="">Seleccione</option>
+                                    <option value="1">SI</option>
+                                    <option value="2">NO</option>
+                                    </select>
+                                </td>
+                                <td rowSpan="1" data-name="formalizado">
+                                    <select name="formalizado0">
+                                    <option value="">Seleccione</option>
+                                    <option value="1">SI</option>
+                                    <option value="2">NO</option>
+                                    </select>
+                                </td>
+                                <td rowSpan="1" data-name="seAplica">
+                                    <select name="seAplica0">
+                                    <option value="">Seleccione</option>
+                                    <option value="1">SI</option>
+                                    <option value="2">NO</option>
+                                    </select>
+                                </td>
+                                <td rowSpan="1" data-name="esEfectivo">
+                                    <select name="esEfectivo0">
+                                    <option value="">Seleccione</option>
+                                    <option value="1">SI</option>
+                                    <option value="2">NO</option>
+                                    </select>
+                                </td>
+                                <td rowSpan="1" data-name="resultado">
+                                    <input type="text" name='resultado0' placeholder='Determinación' />
+                                </td>
+                                <td rowSpan="1">pendiente</td>
+                            </tr>
+                            <tr rowSpan="1">
+                                <td rowSpan="1">
+                                    <input type="text" name='numControl' placeholder='No.' class=" w-full"/>
+                                </td>
+                                <td rowSpan="1" data-name="descripcionContol">
+                                    <input type="text" name='desControl' placeholder='Descripción' class=" w-full"/>
+                                </td>
+                                <td rowSpan="1">
+                                    <select name="tipoControl0">
+                                    <option value="">Seleccione</option>
+                                    <option value="1">Preventivo</option>
+                                    <option value="2">Detectivo</option>
+                                    <option value="3">Correctivo</option>
+                                    </select>
+                                </td>
+                                <td rowSpan="1">
+                                    <select name="documentado0">
+                                    <option value="">Seleccione</option>
+                                    <option value="1">SI</option>
+                                    <option value="2">NO</option>
+                                    </select>
+                                </td>
+                                <td rowSpan="1" data-name="formalizado">
+                                    <select name="formalizado0">
+                                    <option value="">Seleccione</option>
+                                    <option value="1">SI</option>
+                                    <option value="2">NO</option>
+                                    </select>
+                                </td>
+                                <td rowSpan="1" data-name="seAplica">
+                                    <select name="seAplica0">
+                                    <option value="">Seleccione</option>
+                                    <option value="1">SI</option>
+                                    <option value="2">NO</option>
+                                    </select>
+                                </td>
+                                <td rowSpan="1" data-name="esEfectivo">
+                                    <select name="esEfectivo0">
+                                    <option value="">Seleccione</option>
+                                    <option value="1">SI</option>
+                                    <option value="2">NO</option>
+                                    </select>
+                                </td>
+                                <td rowSpan="1" data-name="resultado">
+                                    <input type="text" name='resultado0' placeholder='Determinación' />
+                                </td>
+                                <td rowSpan="1">pendiente</td>
+                            </tr>
+                            <tr rowSpan="1">
+                                <td rowSpan="1">
+                                    <input type="text" name='numControl' placeholder='No.' class=" w-full"/>
+                                </td>
+                                <td rowSpan="1" data-name="descripcionContol">
+                                    <input type="text" name='desControl' placeholder='Descripción' class=" w-full"/>
+                                </td>
+                                <td rowSpan="1">
+                                    <select name="tipoControl0">
+                                    <option value="">Seleccione</option>
+                                    <option value="1">Preventivo</option>
+                                    <option value="2">Detectivo</option>
+                                    <option value="3">Correctivo</option>
+                                    </select>
+                                </td>
+                                <td rowSpan="1">
+                                    <select name="documentado0">
+                                    <option value="">Seleccione</option>
+                                    <option value="1">SI</option>
+                                    <option value="2">NO</option>
+                                    </select>
+                                </td>
+                                <td rowSpan="1" data-name="formalizado">
+                                    <select name="formalizado0">
+                                    <option value="">Seleccione</option>
+                                    <option value="1">SI</option>
+                                    <option value="2">NO</option>
+                                    </select>
+                                </td>
+                                <td rowSpan="1" data-name="seAplica">
+                                    <select name="seAplica0">
+                                    <option value="">Seleccione</option>
+                                    <option value="1">SI</option>
+                                    <option value="2">NO</option>
+                                    </select>
+                                </td>
+                                <td rowSpan="1" data-name="esEfectivo">
+                                    <select name="esEfectivo0">
+                                    <option value="">Seleccione</option>
+                                    <option value="1">SI</option>
+                                    <option value="2">NO</option>
+                                    </select>
+                                </td>
+                                <td rowSpan="1" data-name="resultado">
+                                    <input type="text" name='resultado0' placeholder='Determinación' />
+                                </td>
+                                <td rowSpan="1">pendiente</td> -->
+                            </tr> 
                         </tbody>
                     </table>
                 </div>
             </div>
-            <a id="add_row" class="btn btn-primary bg-blue-600 float-right" onclick="NuevaFila()">Add Row</a>
+            <button id="add_row" class="btn btn-primary bg-blue-600 float-right">Add Row</button>
             <button type="submit" class="btn btn-primary bg-blue-600 float-left" name="guardar">Guardar</button>
         </form>
     </div>

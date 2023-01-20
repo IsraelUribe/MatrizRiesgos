@@ -34,29 +34,33 @@
         }
         
         $insercion = "INSERT INTO usuarios VALUES ('$correo','$contrasenia','$nombre')";
-        
-        if(mysqli_query($conn,$insercion)){
-            echo "<script type='text/javascript'>
+
+        mysqli_query($conn, $insercion);
+        /*     echo "<script type='text/javascript'>
                 alertaCorrecta();
             </script>";
-            header("Location: login.php");
+            //header("Location: login.php");
         }else{
             echo '<div class="alert alert-success" role="alert">
                 <h4 class="alert-heading">Error al insertar el usuario</h4>
             </div>';
-        }
-        mysqli_close($conn);//comando para cerrar la conexión a la base de datos
+        } */
+       // mysqli_close($conn);//comando para cerrar la conexión a la base de datos
     }
 ?>
 
+<body onload=redireccionar()></body>
 <script>
-function alertaCorrecta() {
-            swal({
-                title: "User created!",
-                text: "Suceess message sent!!",
-                icon: "success",
-                button: "Ok",
-                timer: 2000
-            });
+    swal({
+        title: "User created!",
+        text: "Suceess message sent!!",
+        icon: "success",
+        button: "Ok",
+        timer: 1000
+    });
+    function redireccionar(){
+        setTimeout("location.href='login.php'", 500);
     }
+
+
 </script>

@@ -99,19 +99,6 @@
             </div>
         </div>
     </div>
-    <?php } ?>
-    <?php
-        if(isset($_GET['inicio'])=='false') {                    
-            echo '<script>
-                Swal.fire({
-                    icon: "error",
-                    title: "¡ERROR!",
-                    text: "Alguno de los datos ingresados, es incorrecto. Intenta de nuevo.",
-                    showConfirmButton: true,
-                    confirmButtonText: "ACEPTAR"
-                });
-            </script>';
-        }
-    ?> 
+    <?php } ?> 
 </body>
 </html>
