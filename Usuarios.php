@@ -41,9 +41,9 @@
                     ?>
                     
                     <tr>    
-                        <td><?php echo $user_name;  ?></td>  
-                        <td><?php echo $user_email;  ?></td>  
-                        <td><?php echo $user_pass;  ?></td>  
+                        <td><?php echo $user_name;?></td>  
+                        <td><?php echo $user_email;?></td>  
+                        <td><?php echo $user_pass;?></td>  
                         <td><a href="EliminarUsuario.php?del=<?php echo $user_email ?>">
                         <button class="btn btn-danger" align= center>Eliminar</button></a></td> <!--btn btn-danger is a bootstrap button to show danger-->  
                     </tr>

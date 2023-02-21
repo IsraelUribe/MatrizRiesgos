@@ -14,13 +14,24 @@
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body>
-    <?php include("NavBar.php"); ?>
+    <?php include("NavBar.php");?>
     <div class="container">
         <h1 class='mt-6 mb-4 text-3xl xl:text-4xl font-bold text-gray-800 text-center'>Avance</h1>
         <div class="row clearfix">
             <div class="col-md-12 table-responsive">
                 <table class="table table-bordered table-hover table-sortable" >
                     <thead>
+                        <tr class="text-center">
+                            <th colspan="12">Puntos</th>
+                            <th colspan="3">Resultado Esperado</th>
+                            <th colspan="12">Meta Programada</th>
+                            <th colspan="12">Meta Alcanzada</th>
+                            <th colspan="3">Primer Trimestre</th>
+                            <th colspan="3">Segundo Trimestre</th>
+                            <th colspan="3">Tercer Trimestre</th>
+                            <th colspan="3">Cuarto Trimestre</th>
+                            <th colSpan="3">Avance Anual</th>
+                        </tr>
                         <tr class="text-center">
                             <th>No. Riesgo</th>
                             <th>Descripción del Riesgo</th>
@@ -33,11 +44,11 @@
                             <th>Fecha de inicio</th>
                             <th>Fecha de termino</th>
                             <th>Medios de Verificación</th>
-                            <th>1er. Trimestre</th>
+                            <!-- <th>1er. Trimestre</th>
                             <th>2do. Trimestre</th>
                             <th>3er. Trimestre</th>
-                            <th>4to. Trimestre</th>
-                            <th>Avance Acumulado</th>
+                            <th>4to. Trimestre</th> 
+                            <th>Avance Acumulado</th> -->
                             <th>Actividades realizadas</th>
                             <th>Descripción</th>
                             <th>Unidad de Medida</th>
@@ -54,11 +65,42 @@
                             <th>Octubre</th>
                             <th>Noviembre</th>
                             <th>Diciembre</th>
+                            <th>Enero</th>
+                            <th>Febrero</th>
+                            <th>Marzo</th>
+                            <th>Abril</th>
+                            <th>Mayo</th>
+                            <th>Junio</th>
+                            <th>Julio</th>
+                            <th>Agosto</th>
+                            <th>Septiembre</th>
+                            <th>Octubre</th>
+                            <th>Noviembre</th>
+                            <th>Diciembre</th>
+                            <th>Meta Programada</th>
                             <th>Meta Alcanzada</th>
-                            <th>Porcentaje de cumplimiento</th>
+                            <th>Porcentaje cumplimiento</th>
+                            <th>Meta Programada</th>
+                            <th>Meta Alcanzada</th>
+                            <th>Porcentaje Cumplimiento</th>
+                            <th>Meta Programada</th>
+                            <th>Meta Alcanzada</th>
+                            <th>Porcentaje Cumplimiento</th>
+                            <th>Meta Programada</th>
+                            <th>Meta Alcanzada</th>
+                            <th>Porcentaje Cumplimiento</th>
+                            <th>Meta Programada</th>
+                            <th>Meta Alcanzada</th>
+                            <!-- <th>Porcentaje cumplimiento</th>
+                            <th>Porcentaje de cumplimiento</th> -->
                         </tr>
                     </thead>
                     <tbody>
+                        <?php
+                            require_once("DataBaseConnect.php");
+                            //$query = "SELECT riesgos.num_factor, riesgo, clasificacion_riesgo_seleccion, num_factor, descripcion, unidad_administrativa"
+                            
+                        ?>
                         <tr>
                             <td>
                                 <Input type="text" placeholder="No.Riesgo"></Input>

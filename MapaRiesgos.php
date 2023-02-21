@@ -16,7 +16,7 @@
 <body>
     <?php include("NavBar.php"); ?>
     <div class="container">
-        <h1 class="mt-6 mb-4 text-3xl xl:text-4xl font-bold text-gray-800 text-center text-center">Mapa de Riesgos</h1>
+        <h1 class="mt-6 mb-4 text-3xl xl:text-4xl font-bold text-gray-800 text-center">Mapa de Riesgos</h1>
         <div class="row clearfix">
             <div class="col-md-12 table-responsive">
                 <table class="table table-bordered table-hover table-sortable" >

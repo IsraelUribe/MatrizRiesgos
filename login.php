@@ -13,7 +13,10 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
 </head>
 
 <body>
@@ -26,25 +29,31 @@
             $password = mysqli_real_escape_string($conn, $_POST['pass']);//variable que toma lo que hay en la caja de texto de password y lo convierte todo a string
             $query = "SELECT * FROM usuarios WHERE email_user = '$username' and password_user = '$password'";//Consulta a la tabla usuarios para encontrar coindidencias con los valores que ahora tienen las variables.
             $result = mysqli_query($conn, $query);//Este comando sirve para ejecutar realmente la consulta en la base de datos, $conn es el nombre de la conexión a la base de datos y $query es la consulta o sentecia sql que se desea ejecutar.
-            /* $nombre = "SELECT nombre from usuarios where email_user = '$username'";
-            $resultado = mysqli_query($conn, $nombre); */
+            /* $nombre = "SELECT nombre from usuarios where email_user = '$username'";*/
+            $resultado = mysqli_fetch_array ($result);
+            $nombre = $resultado[2];
                         
         
             if (mysqli_num_rows($result)) {//Este retorna el numero de filas consultadas y cuando la fila coincide con result que contiene el resultado de la consulta se obtiene lo siguiente.
-                $_SESSION['userName'] = $username;//El nombre de la sesión activa será igual a lo que haya en la variable usarname.
-                header("Location: Informacion.php"); // Redirigir al usuario al archivo Informacion.php 
-            } else {//En caso de ser falso(que el usuario y/o contraseña sean incorrectas) se mostrará esto.
-                 echo '<script>
-                Swal.fire({
-                    icon: "error",
-                    title: "¡ERROR!",
-                    text: "Alguno de los datos ingresados, es incorrecto. Intenta de nuevo.",
-                    showConfirmButton: true,
-                    confirmButtonText: "ACEPTAR"
-                });
-            </script>';
-            }
-        }else{//si la variable inicio no esta declarada mostrará esto
+                $_SESSION['userName'] = $nombre;//El nombre de la sesión activa será igual a lo que haya en la variable usarname.
+                ?> 
+                <script type="text/javascript">      
+                    toastr.success('Inicio de Sesión Correcto');
+                    setTimeout("location.href='Informacion.php'", 100);
+                </script> <!-- // Redirigir al usuario al archivo Informacion.php --> 
+            <?php } else if (!mysqli_num_rows($result)) { ?> <!-- //En caso de ser falso(que el usuario y/o contraseña sean incorrectas) se mostrará esto. -->
+                <script type="text/javascript">
+                    swal({
+                        title: "Ha ocurrido un error!",
+                        text: "Sus datos son incorrectos, revise y vuelva a intentar!",
+                        icon: "error",
+                    });
+                    setTimeout("location.href='login.php'", 200);
+                </script>
+            <?php              
+            }?>
+    <?php
+        }else{ //si la variable inicio no esta declarada mostrará esto -->
     ?>
     <div id="login">
         <div class="sidenav">
@@ -83,7 +92,7 @@
                     </button>
                 </div>
                 <div class="login-form -ml-15 -mb-40 mt-40">
-                    <form method="post">
+                    <form method="post" action="login.php">
                         <div class="form-group">
                             <label >Correo</label>
                             <input type="email"  name="correo" id="correo" placeholder="abcdefghij@iteshu.edu.mx" class="form-control" required/>
@@ -92,8 +101,8 @@
                             <label >Cotraseña</label>
                             <input type="password"  name="pass" id="contrasenia" placeholder="Password" class="form-control" required/>
                         </div>
-                        <input  type="submit" class="btn btn-primary bg-blue-600 rounded-2xl" value="login" name="inicio"></input>
-                        <a href="Registro.php"><button  type="button" class="btn btn-primary bg-blue-600 rounded-2xl">Register</button></a>
+                        <input  type="submit" class="btn btn-primary bg-blue-600 rounded-2xl" value="Iniciar" id="inicio" name="inicio"></input>
+                        <a href="Registro.php"><button  type="button" class="btn btn-primary bg-blue-600 rounded-2xl">Registrar</button></a>
                     </form>
                 </div>
             </div>

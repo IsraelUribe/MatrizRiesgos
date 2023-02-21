@@ -41,10 +41,16 @@
                     </li>
                     <?php
                         $usuario = $_SESSION['userName'];
-                        if($usuario == 'admin@admin'){
-                        echo '<li class="nav-item">
-                                <a class="nav-link" href="Usuarios.php">Usuarios</a>
-                            </li>';
+                        if($usuario == 'Prueba'){
+                        echo '<div class="nav-item dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Opciones
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="Usuarios.php">Usuarios</a>
+                                    <a class="dropdown-item" href="AreasEncargados.php">Áreas y Servidores</a>
+                                </div>
+                            </div>';
                         }
                     ?>
                 </ul>

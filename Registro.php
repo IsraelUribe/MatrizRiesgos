@@ -79,10 +79,10 @@
 						</div>
 					</div>
 					<div class="pb-6 pt-6 text-center">
-						<button type="submit" class="btn btn-primary bg-blue-600 rounded-t-2xl" name="registrar">Registrar</button>
+						<button type="submit" class="btn btn-primary bg-blue-600 rounded-1xl" name="registrar">Registrar</button>
 					</div>
 					<div class="text-center">
-			            <a href="MatrizRiesgos.php"><button type="button" class="btn btn-primary bg-blue-600 rounded-b-2xl">Iniciar sesión</button></a>
+			            <a href="MatrizRiesgos.php"><button type="button" class="btn btn-primary bg-blue-600">Iniciar sesión</button></a>
 		            </div>
 				</form>
 			</div>

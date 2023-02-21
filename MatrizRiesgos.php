@@ -13,7 +13,8 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
     <script>
-        function NuevaFila(){//Función para insertar filas en la tabla de matíz de riesgos
+        function NuevaFila(e){//Función para insertar filas en la tabla de matíz de riesgos
+            e.preventDefault();
             var tabla = document.getElementById("tabla-mr"); 
             var fila = document.getElementById("filaRegistro").cloneNode(true);
             fila.in
@@ -27,13 +28,13 @@
     </script>
 </head>
 <body>
-    <?php include("NavBar.php"); ?><!-- Cógigo PHP para incluir un archivo PHP dentro de otro archivo, contiene lo que es la NavBar.php -->
-    <div class="container">
-        <form method="post">
+    <?php include("NavBar.php"); ?>
+    <form method="post" action="MatrizRiesgos.php">
+        <div class="container">
             <h1 class="mt-6 mb-4 text-3xl xl:text-4xl font-bold text-gray-800 text-center">Matríz de Administración de Riesgos</h1>
             <div class="row clearfix">
         	    <div class="col-md-12 table-responsive">
-    			    <table align="center" class="table table-bordered table-hover table-sortable" id="tabla-mr">
+    			    <table class="table table-bordered table-sortable text-center align-middle" id="tabla-mr">
                         <thead>
                         <tr class="text-center">
                             <th colSpan="16">l. Evaluación de riesgos</th>
@@ -90,92 +91,107 @@
                         </tr>
                         </thead>
                         <tbody >
-                            <?php
-                                require_once("DataBaseConnect.php");
-                                if (isset($_POST['guardar'])) {
-                                    $noRiesgo = $_POST["numRiesgo"];
-                                    $unidad = $_POST["unidad"];
-                                    $alineacion = $_POST["alineacion"];
-                                    $descripAlineacion = $_POST["desAlineacion"];
-                                    $riesgo = $_POST["riesgo"];
-                                    $nivel = $_POST["nivel"];
-                                    $seleccion = $_POST["seleccion"];
-                                    $otro = $_POST["otro"];
-                                    //variabeles tabla factores
-                                    /* 
-                                    
-                                    } */
-                                    
-                                    /* $factor1 = $_POST["numFactor"];
-                                    $descripcionF1 = $_POST["descripcionF1"];
-                                    $clasFa1 = $_POST["clasificacionFactor"];
-                                    $tipoFac = $_POST["tipoFactor0"];*/
-                                    $efecto = $_POST["efectoRiesgo"]; 
-                                    $gradoImpacto = $_POST["gradoImpacto0"];
-                                    $ocurrenciaInicial = $_POST["ocurrenciaInicial"];
-                                    $cuadrante = $_POST["cuadrante0"];
-                                    $opControl = $_POST["tieneControles0"];
-                                    /*$numControl = mysqli_escape_string($conn,$_POST["numControl0"]);
-                                    $desControl = mysqli_escape_string($conn,$_POST["desControl"]);
-                                    $tipoControl = mysqli_escape_string($conn, $_POST["tipoControl0"]);
-                                    $documentado = mysqli_escape_string($conn,$_POST["documentado"]);
-                                    $formalizado = mysqli_escape_string($conn,$_POST["formalizado"]);
-                                    $seAplica = mysqli_escape_string($conn,$_POST["seAplica"]);
-                                    $esEfectivo = mysqli_escape_string($conn,$_POST["esEfectivo"]);
-                                    $resultado = mysqli_escape_string($conn,$_POST["resultado0"]); */
-                                    $controlado = $_POST["Controlado"];
-                                    $impactoValoracion = $_POST["gradoImpactoValoracion0"];
-                                    $probOcurrencia = $_POST["probOcurrencia"];
-                                    $p1 = $_POST["p1"];
-                                    $p2 = $_POST["p2"];
-                                    $p3 = $_POST["p3"];
-                                    $p4 = $_POST["p4"];
-                                    $estrategia = $_POST["estrategia"];
-                                    $desAcciones = $_POST["desAccion"];
-                                    
-                                    $user = $_SESSION["userName"];
-                                    
-                                    /* $factor2 = $_POST["numFactor2"];
-                                    $factor3 = $_POST["numFactor3"];
-                                    $factor4 = $_POST["numFactor4"];
-                                    $factor5 = $_POST["numFactor5"];
-                                    
-                                    
-                                    $descripcionF2 = $_POST["descripcionF2"];
-                                    $descripcionF3 = $_POST["descripcionF3"];
-                                    $descripcionF4 = $_POST["descripcionF4"];
-                                    $descripcionF5 = $_POST["descripcionF5"];
-                                    
-                                    $clasFa1 = $_POST["clasificacionFactor"];
-                                    $clasFa2 = $_POST["clasificacionFactor2"];
-                                    $clasFa3 = $_POST["clasificacionFactor3"];
-                                    $clasFa4 = $_POST["clasificacionFactor4"];
-                                    $clasFa4 = $_POST["clasificacionFactor5"];
-
-                                    $tipoFac = $_POST["tipoFactor0"];
-                                    $tipoFac2 = $_POST["tipoFactor1"];
-                                    $tipoFac3 = $_POST["tipoFactor2"];
-                                    $tipoFac4 = $_POST["tipoFactor3"];
-                                    $tipoFac5 = $_POST["tipoFactor4"]; */
-                                    
-                                    
-                                    $insertar = "INSERT INTO riesgos VALUES ('$noRiesgo','$unidad','$alineacion','$descripAlineacion','$riesgo','$nivel','$seleccion','$otro',$efecto','$gradoImpacto','$ocurrenciaInicial','$cuadrante','$opControl','$controlado','$impactoValoracion','$probOcurrencia','$p1','$estrategia','$desAcciones', '2022','$user')";
-                                    //$insertar = "INSERT INTO factores VALUES ('$factor1','$descripcionF1','$clasFa1','$tipoFac','$noRiesgo')";
-                                    //$insertar = "INSERT INTO controles VALUES ('$numControl','$desControl',$tipoControl','$documentado','$formalizado','$seAplica','$esEfectivo','$resultado','$factor1')";
-                                    if(mysqli_multi_query($conn,$insertar)){
-                                        header("Location: MatizRiesgos.php");
-                                    }else{
-                                        echo "<div class='form'><h3>incorrect.</h3><br/>Haga clic aquí para <a href='MatrizRiesgos.php'>volver</a></div>";
-                                    }
-                                    
+                        <?php
+                            require_once("DataBaseConnect.php");
+                            //Cargar datos de la BD en campos de la tabla
+                            $areas = "SELECT area FROM areas_encargados";
+                            $ejecutar = mysqli_query($conn, $areas);
+                            
+                            
+                            if (isset($_POST['guardar'])) {
+                                $noRiesgo = $_POST["numRiesgo"];
+                                $unidad = $_POST["unidad"];
+                                $alineacion = $_POST["alineacion"];
+                                $descripAlineacion = $_POST["desAlineacion"];
+                                $riesgo = $_POST["riesgo"];
+                                $nivel = $_POST["nivel"];
+                                $seleccion = $_POST["seleccion"];
+                                $otro = $_REQUEST['otro'];
+                                //variabeles tabla factores
+                                /* 
+                                
+                                } */
+                                
+                                $factor1 = $_POST["numFactor"];
+                                $descripcionF1 = $_POST["descripcionF1"];
+                                $clasFa1 = $_POST["clasificacionFactor"];
+                                $tipoFac = $_POST["tipoFactor0"];
+                                $efecto = $_REQUEST["efectoRiesgo"]; 
+                                $gradoImpacto = $_REQUEST["gradoImpacto0"];
+                                $ocurrenciaInicial = $_REQUEST["ocurrenciaInicial"];
+                                $cuadrante = $_REQUEST["cuadrante0"];
+                                $opControl = $_REQUEST["tieneControles0"];
+                                /*$numControl = mysqli_escape_string($conn,$_POST["numControl0"]);
+                                $desControl = mysqli_escape_string($conn,$_POST["desControl"]);
+                                $tipoControl = mysqli_escape_string($conn, $_POST["tipoControl0"]);
+                                $documentado = mysqli_escape_string($conn,$_POST["documentado"]);
+                                $formalizado = mysqli_escape_string($conn,$_POST["formalizado"]);
+                                $seAplica = mysqli_escape_string($conn,$_POST["seAplica"]);
+                                $esEfectivo = mysqli_escape_string($conn,$_POST["esEfectivo"]);
+                                $resultado = mysqli_escape_string($conn,$_POST["resultado0"]); */
+                                $controlado = mysqli_escape_string($conn,$_REQUEST["Controlado"]);
+                                $impactoValoracion = $_REQUEST["gradoImpactoValoracion0"];
+                                $probOcurrencia = $_REQUEST["probOcurrencia"];
+                                $p1 = mysqli_escape_string($conn,$_REQUEST["p1"]);
+                                /* $p2 = $_POST["p2"];
+                                $p3 = $_POST["p3"];
+                                $p4 = $_POST["p4"]; */
+                                $estrategia = mysqli_real_escape_string($conn, $_REQUEST["estrategia"]);
+                                $desAcciones =  $_REQUEST["desAccion"];
+                                
+                                $user = mysqli_real_escape_string($conn, $_SESSION["userName"]);
+                                $usuario = strval($user);
+                                /* $factor2 = $_POST["numFactor2"];
+                                $factor3 = $_POST["numFactor3"];
+                                $factor4 = $_POST["numFactor4"];
+                                $factor5 = $_POST["numFactor5"];
+                                
+                                
+                                $descripcionF2 = $_POST["descripcionF2"];
+                                $descripcionF3 = $_POST["descripcionF3"];
+                                $descripcionF4 = $_POST["descripcionF4"];
+                                $descripcionF5 = $_POST["descripcionF5"];
+                                
+                                $clasFa1 = $_POST["clasificacionFactor"];
+                                $clasFa2 = $_POST["clasificacionFactor2"];
+                                $clasFa3 = $_POST["clasificacionFactor3"];
+                                $clasFa4 = $_POST["clasificacionFactor4"];
+                                $clasFa4 = $_POST["clasificacionFactor5"];
+                        
+                                $tipoFac = $_POST["tipoFactor0"];
+                                $tipoFac2 = $_POST["tipoFactor1"];
+                                $tipoFac3 = $_POST["tipoFactor2"];
+                                $tipoFac4 = $_POST["tipoFactor3"];
+                                $tipoFac5 = $_POST["tipoFactor4"]; */
+                                $anio = mysqli_real_escape_string($conn, date("Y"));
+                                $anMatriz = strval($anio);
+                                
+                                $insertar = "INSERT INTO riesgos VALUES ('$noRiesgo','$unidad','$alineacion','$descripAlineacion','$riesgo','$nivel','$seleccion','$otro',$efecto','$gradoImpacto','$ocurrenciaInicial','$cuadrante','$opControl','$controlado','$impactoValoracion','$probOcurrencia','$p1','$estrategia','$desAcciones', '$anMatriz','$usuario')";
+                                //$insertar = "INSERT INTO factores VALUES ('$factor1','$descripcionF1','$clasFa1','$tipoFac','$noRiesgo')";
+                                //$insertar = "INSERT INTO controles VALUES ('$numControl','$desControl',$tipoControl','$documentado','$formalizado','$seAplica','$esEfectivo','$resultado','$factor1')";
+                                if(mysqli_query($conn,$insertar)){
+                                    /* header("Location: MatizRiesgos.php"); */
+                                }else{
+                                    echo "<div class='form'><h3>incorrect.</h3><br/>Haga clic aquí para <a href='MatrizRiesgos.php'>volver</a></div>";
                                 }
-                            ?>
-                            <tr id="filaRegistro"  class="hidden align-middle" rowSpan="5">
+                            }
+                        ?>
+                        <tr id="filaRegistro"  class="align-middle" rowSpan="5">
                                 <td rowSpan="5">
                                     <input type="text" placeholder='No. riesgo' value="" name="numRiesgo"/>
                                 </td>
                                 <td rowSpan="5">
-                                    <textarea  placeholder='Unidad' name="unidad"></textarea>
+                                    <select name="unidad">
+                                        <?php
+                                            $i = 0;
+                                            while($row=mysqli_fetch_array($ejecutar)){ 
+                                                ?>
+                                                    <option><?php echo $row[$i]?></option>
+                                                <?php $i + 1;?>
+                                                <?php
+                                                
+                                                } ?>
+                                    </select>
                                 </td>
                                 <td rowSpan="5">
                                     <select placeholder="seleccione" name="alineacion">
@@ -228,21 +244,19 @@
                                 </td>
                                 <td rowSpan="1">
                                     <select placeholder='Selecione' name="clasificacionFactor">
-                                        <option value="0">Seleccione</option>
-                                        <option value="1">Humano</option>
-                                        <option value="2">Financiero - Presupuestal</option>
-                                        <option value="3">Técnico - Administrativo</option>
-                                        <option value="4">TIC's</option>
-                                        <option value="5">Material</option>
-                                        <option value="6">Normativo</option>
-                                        <option value="7">Entorno</option>
+                                        <option value="Humano">Humano</option>
+                                        <option value="Financiero - Presupuestal">Financiero - Presupuestal</option>
+                                        <option value="Técnico - Administrativo">Técnico - Administrativo</option>
+                                        <option value="TICs">TIC's</option>
+                                        <option value="Material">Material</option>
+                                        <option value="Normativo">Normativo</option>
+                                        <option value="Entorno">Entorno</option>
                                     </select>
                                 </td>
                                 <td rowSpan="1">
                                     <select name="tipoFactor0">
-                                    <option value="">Seleccione</option>
-                                    <option value="1">Interno</option>
-                                    <option value="2">Externo</option>
+                                    <option value="Interno">Interno</option>
+                                    <option value="Externo">Externo</option>
                                     </select>
                                 </td>
                                 <td rowSpan="5" data-name="efecto">
@@ -250,32 +264,30 @@
                                 </td>
                                 <td rowSpan="5"  >
                                     <select name="gradoImpacto0" placeholder='Selecione'>
-                                    <option value="">Seleccione</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
                                     </select>
                                 </td>
                                 <td rowSpan="5"  data-name="probOcurrenciaInicial">
                                     <select name="ocurrenciaInicial" placeholder='Selecione'>
-                                    <option value="">Seleccione</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
                                     </select>
                                 </td>
                                 <td rowSpan="5">
@@ -283,9 +295,8 @@
                                 </td>
                                 <td rowSpan="5">
                                     <select name="tieneControles0">
-                                    <option value="">Seleccione</option>
-                                    <option value="1">SI</option>
-                                    <option value="2">NO</option>
+                                        <option value="SI">SI</option>
+                                        <option value="SI">NO</option>
                                     </select>
                                 </td>
                                 <td rowSpan="1">
@@ -296,38 +307,33 @@
                                 </td>
                                 <td rowSpan="1">
                                     <select name="tipoControl0">
-                                    <option value="">Seleccione</option>
-                                    <option value="1">Preventivo</option>
-                                    <option value="2">Detectivo</option>
-                                    <option value="3">Correctivo</option>
+                                        <option value="1">Preventivo</option>
+                                        <option value="2">Detectivo</option>
+                                        <option value="3">Correctivo</option>
                                     </select>
                                 </td>
                                 <td rowSpan="1">
                                     <select name="documentado0">
-                                    <option value="">Seleccione</option>
-                                    <option value="1">SI</option>
-                                    <option value="2">NO</option>
+                                        <option value="1">SI</option>
+                                        <option value="2">NO</option>
                                     </select>
                                 </td>
                                 <td rowSpan="1" data-name="formalizado">
                                     <select name="formalizado0">
-                                    <option value="">Seleccione</option>
-                                    <option value="1">SI</option>
-                                    <option value="2">NO</option>
+                                        <option value="1">SI</option>
+                                        <option value="2">NO</option>
                                     </select>
                                 </td>
                                 <td rowSpan="1" data-name="seAplica">
                                     <select name="seAplica0">
-                                    <option value="">Seleccione</option>
-                                    <option value="1">SI</option>
-                                    <option value="2">NO</option>
+                                        <option value="1">SI</option>
+                                        <option value="2">NO</option>
                                     </select>
                                 </td>
                                 <td rowSpan="1" data-name="esEfectivo">
                                     <select name="esEfectivo0">
-                                    <option value="">Seleccione</option>
-                                    <option value="1">SI</option>
-                                    <option value="2">NO</option>
+                                        <option value="1">SI</option>
+                                        <option value="2">NO</option>
                                     </select>
                                 </td>
                                 <td rowSpan="1" data-name="resultado">
@@ -336,32 +342,30 @@
                                 <td rowSpan="1"><input type="text" name="Controlado" placeholder="pendiente">  </input></td>
                                 <td rowSpan="5" data-name="gradoImpactoValoracion">
                                     <select name="gradoImpactoValoracion0" placeholder='Selecione' class=''>
-                                    <option value="">Seleccione</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
                                     </select>
                                 </td>
                                 <td rowSpan="5" data-name="probabilidadOcurrencia">
                                     <select name="probOcurrencia" placeholder='Selecione' class=''>
-                                    <option value="">Seleccione</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
                                     </select>
                                 </td>
                                 <td rowSpan="5">
@@ -378,7 +382,6 @@
                                 </td>
                                 <td rowSpan="5" data-name="estrategiaUsar">
                                     <select name="estrategia" placeholder='Selecione' class=''>
-                                        <option value="">Seleccione</option>
                                         <option value="1">Evitar el Riesgo</option>
                                         <option value="2">Reducir el Riesgo</option>
                                         <option value="3">Asumir el Resigo</option>
@@ -701,9 +704,10 @@
                     </table>
                 </div>
             </div>
-            <button id="add_row" class="btn btn-primary bg-blue-600 float-right">Add Row</button>
+            <button id="add_row" class="btn btn-primary bg-blue-600 float-right" onclick="NuevaFila();">Add Row</button>
             <button type="submit" class="btn btn-primary bg-blue-600 float-left" name="guardar">Guardar</button>
-        </form>
-    </div>
+        </div>
+    </form>
 </body>
 </html>
+
