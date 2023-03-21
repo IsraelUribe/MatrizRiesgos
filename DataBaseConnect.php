@@ -1,10 +1,10 @@
 <?php /* Etiqueta de apertura de código PHP */
-    $servername = "127.0.0.1";
-    $database = "matrizadminriesgositeshu";
-    $username = "root";
-    $password = "";
+    $servername = "127.0.0.1";//Servidor
+    $database = "matrizadminriesgositeshu";//Nombre de la base de datos
+    $username = "root";//Usuario en el que se creo la base de datos
+    $password = "";//Contraseña del usuario
     // Create connection
-    $conn = mysqli_connect($servername, $username, $password, $database);
+    $conn = mysqli_connect($servername, $username, $password, $database); //Comando para realizar la conexión a la base de datos
     // Check connection
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());

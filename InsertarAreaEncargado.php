@@ -23,7 +23,7 @@
             $servidor = $_POST['encargado'];
             
             $query = "INSERT INTO areas_encargados VALUES ('','$area','$servidor')";
-            if(mysqli_query($conn, $query) /* and $area!='' and $servidor!='' */){
+            if(mysqli_query($conn, $query)){
                 ?>
                 <script type="text/javascript">
                     swal({
@@ -31,13 +31,13 @@
                         text: "Los datos han sido registrados correctamente!",
                         icon: "success",
                     });
-                /* /* echo "<script type=text/javascript>alert('Por favor ingrese un correo');" */
+                
                     setTimeout("location.href='AreasEncargados.php'", 400);
                 </script>
             <?php
             }  else{
                 ?><div class="alert alert-success" role="alert">
-                    <h4 class="alert-heading">Error al insertar el usuario</h4>
+                    <h4 class="alert-heading">Error al insertar los datos</h4>
                 </div>
                 <?php
             }
